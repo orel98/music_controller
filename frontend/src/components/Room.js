@@ -13,15 +13,13 @@ const Room = (props) => {
     const roomCode = props.match.params.roomCode;
 
     const updateShowSettings = () => {
-        console.log("show settings")
         setShowSettings(showSettings ? false : true);
     }
-
     const renderSettings = () => {
         return (
             <Grid container spacing={1}>
                 <Grid item xs={12} align="center">
-                    <CreateRoomPage update={true} votesToSkip={votesToSkip} guestCanPause={guestCanPause} roomCode={roomCode} updateCallBack={() => { }} />
+                    <CreateRoomPage update={true} votesToSkip={votesToSkip} guestCanPause={guestCanPause} roomCode={roomCode} updateCallBack={getRoomDetails} />
 
                 </Grid>
                 <Grid item xs={12} align="center">
@@ -67,9 +65,9 @@ const Room = (props) => {
                 return response.json()
             })
             .then((data) => {
-                setVotesToSkip(data.votes_to_skip),
-                    setGuestCanPause(data.guest_can_pause),
-                    setIsHost(data.is_host)
+                setVotesToSkip(data.votes_to_skip)
+                setGuestCanPause(data.guest_can_pause)
+                setIsHost(data.is_host)
             });
     };
 
@@ -91,7 +89,7 @@ const Room = (props) => {
             </Grid>
             <Grid item xs={12} align="center">
                 <Typography variant="h6" component="h6">
-                    Guest Can Pause: {guestCanPause}
+                    Guest Can Pause: {guestCanPause.toString()}
                 </Typography>
             </Grid>
             <Grid item xs={12} align="center">

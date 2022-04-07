@@ -138,7 +138,7 @@ class UpdateRoom(APIView):
 
         serializer = self.serializer_class(data=request.data)
 
-        if serialize.is_valid():
+        if serializer.is_valid():
             code = serializer.data.get("code")
             queryset = Room.objects.filter(code=code)
             if not queryset.exists():
